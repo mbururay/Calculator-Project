@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class GeneralCalculator extends JFrame implements ActionListener {
     JLabel displayLabel;
@@ -224,6 +226,16 @@ public class GeneralCalculator extends JFrame implements ActionListener {
                 calcString = calcList.stream().collect(Collectors.joining());
                 displayLabel.setText(calcString);
                 break;
+
+            default:{
+
+                Expression exp = new ExpressionBuilder(calcString).build();
+                double result = exp.evaluate();
+                calcList.clear();
+                String resultString = String.valueOf(result);
+                displayLabel.setText(resultString);
+
+            }
 
 
 
